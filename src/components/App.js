@@ -12,7 +12,6 @@ function App() {
 	const [loginView, setLoginView] = useState("registration");
 	const [lists, setLists] = useState([]);
 	const [selectedList, setSelectedList] = useState("");
-	
 
 	return (
 		<div className="bodyDiv">
@@ -32,12 +31,9 @@ function App() {
 					selectedList={selectedList}
 				/>
 			) : (
-				<SingleList
-					selectedList={selectedList}
-				/>
+				<SingleList selectedList={selectedList} lists={lists} />
 			)}
 			<br />
-			Hello World
 		</div>
 	);
 }

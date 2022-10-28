@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import { Button } from "react-bootstrap";
 
 export default function Login(props) {
 	const [listName, setListName] = useState("");
@@ -8,7 +9,6 @@ export default function Login(props) {
 		setLists,
 		lists,
 		setCurrentView,
-		currentView,
 		setSelectedList,
 		selectedList,
 	} = props;
@@ -18,41 +18,32 @@ export default function Login(props) {
 			<form
 				onSubmit={async (e) => {
 					e.preventDefault();
-					let data = await axios.post("/api/create-list", { listName });
-					console.log(data.data);
+					let data = await axios.post("/api/create-list", {
+						listName,
+						items: [],
+					});
 					setListName("");
 					lists.push(data.data);
-					console.log(lists);
 				}}
 			>
 				<input
 					type="text"
 					className="add-list-box"
 					placeholder="List Name"
+					value={listName}
 					onChange={(e) => {
 						setListName(e.target.value);
 					}}
 				></input>
-				<button type="submit">Add List</button>
+				<button variant="primary" type="submit">
+					Add List
+				</button>
 			</form>
-			{/* {console.log(lists)} */}
 			{lists.map((listData, index) => (
-				// <img
-				// 	alt=""
-				// 	className={className}
-				// 	onClick={() => {
-				// 		setSelectedPhoto(photos[index]);
-				// 		setCurrentView("singlePhoto");
-				// 	}}
-				// 	src={`data:image/jpeg;base64, ${photo}`}
-				// ></img>
-
 				<div
 					onClick={() => {
 						setCurrentView("singleList");
 						setSelectedList(lists[index]);
-						console.log(currentView);
-						console.log(selectedList);
 					}}
 				>
 					{listData.listName}

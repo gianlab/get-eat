@@ -10,17 +10,8 @@
 ```
 Table lists {
   id serial [pk]
-  list_name varchar(255)
+  list_name varchar(64)
   list_owner int [ref: > users.id, not null]
-}
-```
-
-## Items Table
-
-```
-Table items {
-  id serial [pk]
-  item_name varchar(255)
 }
 ```
 
@@ -29,7 +20,7 @@ Table items {
 ```
 Table items_in_list {
   list_id int [ref: > lists.id, not null]
-  item_id int [ref: > items.id, not null]
+  item_name varchar(32) [not null]
   quantity int [not null]
   purchased boolean [not null]
 }

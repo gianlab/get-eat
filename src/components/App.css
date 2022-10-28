@@ -15,20 +15,22 @@
 }
 
 .Logo {
-	font-family: 'Alfa Slab One';
-	font-size: 30px;
-	text-align: center;
+	font-family: "Alfa Slab One";
+	font-size: 50px;
+	align-items: center;
 }
 
 .registration {
 	background-color: brown;
+	width: 40%;
+	border-radius: 10px;
+	text-align: center;
+	padding: 10px;
 }
 
 .Login {
 	background-color: green;
 	padding: 10px;
-	
-
 }
 
 .App {
@@ -36,9 +38,9 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 100vh; 
+	min-height: 100vh;
 	padding: 1rem 0.5rem;
-  }
+}
 
 .Item {
 	width: 50%;
@@ -48,17 +50,22 @@
 	margin: 10px;
 }
 
-
-
 /* This is code for sign in page needs to be edited */
 
+/* form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	flex-grow: 1;
+	padding-bottom: 1rem;
+} */
 
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    padding-bottom: 1rem;
+#login {
+	border: transparent;
+	background-color: transparent;
+	font-size: 0.8em;
+	color: blue;
+    text-decoration: underline;
 }
 
 input[type="text"],
@@ -66,61 +73,61 @@ input[type="password"],
 input[type="username"],
 button,
 textarea {
-  font-size: 22px;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
+	font-size: 22px;
+	padding: 0.25rem;
+	border-radius: 0.5rem;
 }
 
 label,
 button {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
 
 button {
-  padding: 0.5rem;
+	padding: 0.5rem;
 }
 
 .instructions {
-    font-size: 0.75rem;
-    border-radius: 0.5rem;
-    background: #000;
-    color: #fff;
-    padding: 0.25rem;
-    position: relative;
-    bottom: -10px;
+	font-size: 0.75rem;
+	border-radius: 0.5rem;
+	background: #000;
+	color: #fff;
+	padding: 0.25rem;
+	position: relative;
+	bottom: -10px;
 }
 
 .instructions > svg {
-    margin-right: 0.25rem;
+	margin-right: 0.25rem;
 }
 
 .offscreen {
-    position: absolute;
-    left: -9999px;
+	position: absolute;
+	left: -9999px;
 }
 
 .hide {
-    display: none;
+	display: none;
 }
 
 .valid {
-    color: limegreen;
-    margin-left: 0.25rem;
+	color: limegreen;
+	margin-left: 0.25rem;
 }
 
 .invalid {
-    color: red;
-    margin-left: 0.25rem;
+	color: red;
+	margin-left: 0.25rem;
 }
 
 .errmsg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+	background-color: lightpink;
+	color: firebrick;
+	font-weight: bold;
+	padding: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 .line {
-    display: inline-block;
+	display: inline-block;
 }

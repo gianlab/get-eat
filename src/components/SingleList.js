@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function SingleList(props) {
-	const { selectedList} = props;
+	const { selectedList } = props;
 
 	const [itemName, setItemName] = useState("");
 	const [quantity, setQuantity] = useState(0);
 
-  const [selectedListItems, setSelectedListItems] = useState([]);
-  
-  
-
 	return (
 		<div>
-			Hello this is from Single List compo
-			<p>{selectedList.listName}</p>
+			<p>Hello this is from Single List compo</p>
+			<p>This is the {selectedList.listName} list</p>
 			<form
 				onSubmit={async (e) => {
 					e.preventDefault();
@@ -22,20 +18,21 @@ export default function SingleList(props) {
 					let data = await axios.post("/api/add-item", item);
 					setItemName("");
 					setQuantity(0);
-					selectedListItems.push(data.data);
-					console.log(selectedList);
+					selectedList.items.push(data.data);
 				}}
 			>
 				<input
 					type="text"
 					// className="add-list-box"
 					placeholder="Item Name"
+					value={itemName}
 					onChange={(e) => {
 						setItemName(e.target.value);
 					}}
 				></input>
 				<input
 					type="number"
+					value={quantity}
 					min="1"
 					// className="add-list-box"
 					placeholder="Quantity"
@@ -45,23 +42,24 @@ export default function SingleList(props) {
 				></input>
 				<button type="submit">Add Item</button>
 			</form>
-			{selectedListItems.map((itemData, index) => (
-				// <img
-				// 	alt=""
-				// 	className={className}
-				// 	onClick={() => {
-				// 		setSelectedPhoto(photos[index]);
-				// 		setCurrentView("singlePhoto");
-				// 	}}
-				// 	src={`data:image/jpeg;base64, ${photo}`}
-				// ></img>
-
-				<div>
-					<span>{itemData.itemName}</span>
-					<span>{itemData.quantity}</span>
-					<input type="checkbox"></input>
-				</div>
-			))}
+			{/* {selectedList.items.length === 0 ? <p>You have no item yet</p>} */}
+			<table>
+				<tr>
+					<th>Item Name</th>
+					<th>Quantity</th>
+					<th>Done</th>
+				</tr>
+				{selectedList.items.map((itemData, index) => (
+					<tr>
+						<td>{itemData.itemName}</td>
+						<td>{itemData.quantity}</td>
+						<td>
+							<input type="checkbox"></input>
+						</td>
+						{console.log(itemData)}
+					</tr>
+				))}
+			</table>
 		</div>
 	);
 }
