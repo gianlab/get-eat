@@ -28,14 +28,14 @@ export default function SingleList(props) {
 				onSubmit={async (e) => {
 					e.preventDefault();
 					const item = { itemName, quantity };
-					await axios.post(`/api/lists/${selectedList.id}/addItem`, item);
+					await axios.post(`/api/list/${selectedList.id}/addItem`, item);
 					setItemName("");
 					setQuantity(0);
 				}}
 			>
 				<input
 					type="text"
-					id ="add-list-box"
+					id="add-list-box"
 					placeholder="Item Name"
 					value={itemName}
 					onChange={(e) => {
