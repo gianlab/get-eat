@@ -4,6 +4,13 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+  });
+
 //ROUTE for DATABASE
 
 const PORT = process.env.PORT || 8080;
@@ -28,6 +35,11 @@ const {
 	addItemsToList,
 	addUserTolist,
 } = require("./handler/knex.post");
+
+const {
+  updateItemInList,
+} = require("./handler/knex.update");
+
 
 const {
   deleteUser,
@@ -111,7 +123,6 @@ app.post("/api/lists/add", async (req, res) => {
 //add items to list
 app.post("/api/list/:listId/addItem", async (req, res) => {
   const listId = Number(req.params.listId);
-  console.log(listId);
   await addItemsToList(req.body, listId);
   res.send(JSON.stringify(req.body));
 });
@@ -151,6 +162,7 @@ app.delete("/api/lists/:listId/delete", async (req, res) => {
 });
 
 //delete an item
+<<<<<<< HEAD
 app.delete("/api/lists/:listId/delete", async (req, res) => {
   const listId = Number(req.params.listId);
   await deleteItemInList(listId, req.body);
@@ -163,6 +175,27 @@ app.delete("api/lists/:userId/:listId/delete", async (req, res)=>{
   await deleteUserFromList(userId, listId);
   res.send(JSON.stringify(req.body));
 })
+=======
+app.delete("/api/lists/:listId/:itemName/delete", async (req, res) => {
+  const listId = Number(req.params.listId); 
+  const itemName = req.params.itemName;
+  await deleteItemInList(listId, itemName);
+  res.send(JSON.stringify(req.body));
+});
+
+
+//UPDATE METHOD
+
+//update an item
+app.put("/api/lists/:listId/:itemName/:purchased/update", async (req, res) => {
+  const listId = Number(req.params.listId); 
+  const itemName = req.params.itemName;
+  const purchased = req.params.purchased;
+  await updateItemInList(listId, itemName,purchased);
+  res.send(JSON.stringify(req.body));
+});
+
+>>>>>>> frontend
 
 // app.post("api/access", async (req, res) => {
 //   const dbCode = await checkCode(req.body)
